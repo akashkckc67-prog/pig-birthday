@@ -8,6 +8,14 @@ Requires Node 22.13 or newer. Run `npm ci`, then `npm run dev`.
 
 For a local production preview, run `npm start`. It automatically runs the build when `dist/server/wrangler.json` is missing, then starts the local worker. After changing the source, run `npm run build` to refresh an existing production build.
 
+## Deploy to Vercel
+
+Use the directory containing this `package.json` and `vercel.json` as the Vercel project's Root Directory (`pig-birthday` if the repository contains the parent folder). The included configuration selects Next.js, runs `npm run build:vercel`, and uses `.next` as the output directory. This creates `.next/routes-manifest.json`, which Vercel's Next.js deployment needs. Commit these files and redeploy.
+
+To verify the Vercel build locally, run `npm run build:vercel`. The normal `npm run build` and `npm start` commands continue to use the Cloudflare worker build.
+
+## Birthday experience
+
 The five scenes are `/`, `/home`, `/memories`, `/surprises`, and `/birthday`. The surprise scene features the additional curl-haired portrait and 28 short birthday wishes with character reactions. All banana decorations and gags have been replaced with pigs. The birthday cake automatically blows out its candles after a short countdown and reveals the final photograph. Replay resets the candles and intro.
 
 Music starts on the first click, including Enter or Skip intro. The music control is also available during the opening, and pauses both background music and cartoon sounds. A manual pause stays off across navigation and replay. The same audio element continues across scenes, pauses when the page is hidden, and resumes on return after successful playback. Playback failures show a retry message instead of claiming the music is on.
